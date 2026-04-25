@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 interface CaseStudy {
@@ -9,7 +9,9 @@ interface CaseStudy {
   problem: string;
   process: string;
   impact: string;
-  visual: string; // CSS background gradient string
+  image: string; // path to screenshot in /public
+  github?: string;
+  live?: string;
   award?: string;
 }
 
@@ -23,8 +25,9 @@ const studies: CaseStudy[] = [
     process:
       "Designed a discovery flow that reads more like a feed than a job board — surfacing roles based on real GitHub signal instead of keyword soup.",
     impact: "A platform where the right opportunities feel inevitable, not lucky.",
-    visual:
-      "radial-gradient(120% 80% at 20% 10%, oklch(0.32 0 0), oklch(0.13 0 0) 70%), linear-gradient(180deg, oklch(0.22 0 0), oklch(0.13 0 0))",
+    image: "/projects/intern-karo.png",
+    github: "#",
+    live: "#",
   },
   {
     index: "02",
@@ -35,24 +38,26 @@ const studies: CaseStudy[] = [
     process:
       "Built a stateless WebSocket + Redis matchmaking layer with zero data persistence. Designed the UI to feel like a quiet room, not a feed.",
     impact: "A chat that forgets you the moment you leave. 3rd place at Klymo Ascent 1.0.",
-    visual:
-      "radial-gradient(100% 70% at 80% 20%, oklch(0.4 0 0), oklch(0.13 0 0) 70%), linear-gradient(180deg, oklch(0.18 0 0), oklch(0.13 0 0))",
+    image: "/projects/shadow-chat.png",
+    github: "https://github.com/chinmay7980/ShadowChat/tree/main",
+    live: "#",
     award: "Klymo Ascent 1.0 — 3rd place",
   },
   {
-    index: "03",
-    title: "UniVerse",
-    tag: "Product Design · AI",
-    year: "2026",
-    problem: "Campus events drown in noise; nobody finds the good ones.",
-    process:
-      "AI-driven recommendations, real-time availability, and a visual campus map. Gamified the journey just enough to make discovery a habit.",
-    impact: "Students actually showed up. 3rd place at Visual Vortex 2.0 (GDG).",
-    visual:
-      "radial-gradient(110% 80% at 50% 0%, oklch(0.36 0 0), oklch(0.13 0 0) 70%), linear-gradient(180deg, oklch(0.2 0 0), oklch(0.13 0 0))",
-    award: "Visual Vortex 2.0 — 3rd place",
-  },
-
+  index: "03",
+  title: "Research Scope",
+  tag: "GenAI · Agent Systems",
+  year: "2026",
+  problem:
+    "Research is scattered — information lives across sources, but understanding doesn’t.",
+  process:
+    "Designed a dual-mode system that moves from classical NLP to an agentic workflow — turning queries into structured outputs through a multi-step pipeline instead of isolated tools.",
+  impact:
+    "A system that shifts research from collecting information to actually understanding it.",
+  image: "/projects/researchscope.png",
+  github: "https://github.com/Kushal425/GENai_SecA_P1",
+  live: "https://researchscopegenai.streamlit.app/",
+},
 ];
 
 export function Work() {
@@ -84,14 +89,21 @@ export function Work() {
                   className="relative overflow-hidden rounded-2xl border border-border/50 bg-muted/20"
                   style={{ aspectRatio: "16 / 9" }}
                 >
+                  {/* Screenshot image */}
+                  <img
+                    src={study.image}
+                    alt={study.title}
+                    aria-hidden
+                    className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  />
+                  {/* Dark overlay so text stays legible */}
                   <div
                     aria-hidden
-                    className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    style={{ background: study.visual }}
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20"
                   />
-                  <div className="absolute inset-0 bg-grid opacity-30" aria-hidden />
+                  <div className="absolute inset-0 bg-grid opacity-10" aria-hidden />
                   <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-10 z-10">
-                    <div className="flex items-start justify-between text-[11px] uppercase tracking-[0.24em] text-foreground">
+                    <div className="flex items-start justify-between text-[11px] uppercase tracking-[0.24em] text-foreground drop-shadow">
                       <span>{study.index}</span>
                       <span>{study.year}</span>
                     </div>
@@ -137,11 +149,29 @@ export function Work() {
                   </div>
                 </div>
 
-                <div className="mt-8 px-2 sm:px-4">
-                  <span className="link-underline inline-flex items-center gap-2 text-sm text-foreground cursor-pointer">
-                    Read case study
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
+                <div className="mt-8 px-2 sm:px-4 flex items-center gap-3">
+                  {study.github && (
+                    <a
+                      href={study.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.15em] text-foreground transition-colors duration-200 hover:bg-foreground hover:text-background"
+                    >
+                      <Github className="h-3.5 w-3.5" />
+                      GitHub
+                    </a>
+                  )}
+                  {study.live && (
+                    <a
+                      href={study.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs uppercase tracking-[0.15em] text-background transition-opacity duration-200 hover:opacity-80"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </Reveal>
             </div>
