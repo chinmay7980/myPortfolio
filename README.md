@@ -1,14 +1,18 @@
-# Dark Canvas Showcase
+# myPortfolio
 
-A modern, minimalist portfolio built with React 19, Vite, TanStack Router, and Tailwind CSS v4. It features a strict "pure monochrome dark design system" using `oklch` colors.
+A modern, minimalist portfolio built with TanStack Start, React 19, TypeScript, and Tailwind CSS v4. It features a strict "pure monochrome dark design system" using `oklch` colors.
 
 ## Tech Stack
 
-- **Framework:** React 19 + Vite
-- **Routing:** TanStack Router
-- **Styling:** Tailwind CSS v4 + custom OKLCH design system
-- **UI Components:** shadcn/ui (Radix Primitives)
-- **Animations:** tw-animate-css
+| Category | Technology |
+|----------|------------|
+| Framework | TanStack Start (React 19 + Vite) |
+| Language | TypeScript |
+| Routing | TanStack Router |
+| Styling | Tailwind CSS v4 + custom OKLCH design system |
+| UI Components | shadcn/ui (Radix Primitives) |
+| Animations | tw-animate-css |
+| Deployment | Cloudflare |
 
 ## Running Locally
 
@@ -71,6 +75,25 @@ bun run preview
 # OR using npm
 npm run preview
 ```
+
+### Deployment
+
+This project is configured for deployment on Cloudflare Pages or Workers. To deploy:
+
+1. Ensure you have the Cloudflare CLI (`wrangler`) installed:
+   ```bash
+   npm install -g wrangler
+   ```
+
+2. Login to Cloudflare:
+   ```bash
+   wrangler auth login
+   ```
+
+3. Deploy to Cloudflare:
+   ```bash
+   wrangler deploy
+   ```
 
 ### Other Commands
 
