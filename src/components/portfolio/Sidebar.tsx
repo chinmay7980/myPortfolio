@@ -1,4 +1,4 @@
-import { Mail, Github, Linkedin, MapPin, Code2 } from "lucide-react";
+import { Mail, Github, Linkedin, MapPin, Code2, Download } from "lucide-react";
 import profileImg from "@/assets/chinmay.jpeg";
 import { Button } from "@/components/ui/button";
 import { MagneticWrapper } from "./MagneticWrapper";
@@ -91,7 +91,43 @@ export function Sidebar() {
 
       {/* Footer socials */}
       <div className="mt-8 pt-6 border-t border-border/50 flex flex-col gap-4 relative z-10">
-        <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50 leading-relaxed">
+        <div className="flex justify-between items-center">
+          <div className="flex gap-4">
+            <MagneticWrapper strength={0.2}>
+              <a
+                href="https://github.com/chinmay7980"
+                target="_blank"
+                rel="noreferrer"
+                className="flex p-1 items-center justify-center text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                aria-label="GitHub"
+              >
+                <Github className="h-4 w-4" />
+              </a>
+            </MagneticWrapper>
+            <MagneticWrapper strength={0.2}>
+              <a
+                href="https://www.linkedin.com/in/chinmay-soni-334b8539b/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex p-1 items-center justify-center text-muted-foreground hover:text-foreground transition-all hover:scale-110"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </MagneticWrapper>
+          </div>
+          <MagneticWrapper strength={0.15}>
+            <a
+              href="/resume.pdf"
+              download="Chinmay_Soni_Resume.pdf"
+              className="group flex items-center gap-1.5 text-[10px] uppercase tracking-[0.1em] font-medium text-foreground hover:text-foreground/90 transition-all bg-foreground/5 hover:bg-foreground/10 hover:shadow-sm px-3 py-2 rounded-md border border-border/50 hover:border-border"
+            >
+              <Download className="h-3 w-3 transition-transform group-hover:translate-y-[1px]" />
+              Resume
+            </a>
+          </MagneticWrapper>
+        </div>
+        <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50 leading-relaxed mt-2">
           Open to full-stack & AI internships for 2026
         </p>
       </div>
